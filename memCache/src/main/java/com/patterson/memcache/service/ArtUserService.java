@@ -26,15 +26,20 @@ public class ArtUserService {
 
 
   public void init() {
-    IntStream.range(0, 40).forEach(x -> {
+    IntStream.range(0, 1000).forEach(x -> {
       ArtUser user = initUser();
       artUserRepository.save(user);
     });
   }
 
-  @Cacheable(value = "ArtUserCache", key = "#id")
+  @Cacheable(value = "cache")
   public List<ArtUser> showAll(int id) {
     return artUserRepository.findAll();
+  }
+
+  @Cacheable(value = "cache", key = "#id")
+  public ArtUser showById(int id) {
+    return artUserRepository.findByUserId(id);
   }
 
   private ArtUser initUser() {

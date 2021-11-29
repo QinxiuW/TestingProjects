@@ -12,4 +12,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
  */
 public interface IArtUserRepository extends JpaRepository<ArtUser, Integer> {
 
+  ArtUser findByUserId(int id);
 }
